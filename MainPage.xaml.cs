@@ -8,33 +8,66 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
-
-	private void OnEdit(Object send , EventArgs e)
+    
+	private void onEdit(Object send , EventArgs e)
 	{
 		EditButton.Text = "This button hase been clickd";
 	}
 
     private void onDelete(Object send, EventArgs e)
     {
-        EditButton.Text = "This button hase been clickd";
+        DeleteButton.Text = "This button hase been clickd";
     }
 
     private void onAdd(Object send, EventArgs e)
     {
-        EditButton.Text = "This button hase been clickd";
+        AddButton.Text = "This button hase been clickd";
     }
+    
+	private void ClueTextChanged(object sender, TextChangedEventArgs e)
+	{
+        string oldText = e.OldTextValue;
+        string newText = e.NewTextValue;
+        string myText = Clue.Text;
+    }
+ 
+	private void ClueCompleted (object sender, EventArgs e)
+	{
+        string text = ((Entry)sender).Text;
+    }
+
+
+    private void AnswerTextChanged(object sender, TextChangedEventArgs e)
+    {
+        string oldText = e.OldTextValue;
+        string newText = e.NewTextValue;
+        string myText = Answer.Text;
+    }
+
+    private void AnswerCompleted(object sender, EventArgs e)
+    {
+        string text = ((Entry)sender).Text;
+    }
+
+    private void DifficultyChanged(Object sender, TextChangedEventArgs e)
+    {
+        string oldText = e.OldTextValue;
+        string newText = e.NewTextValue;
+        string myText = Answer.Text;
+    }
+
+    private void DifficultyCompleted(object sender, EventArgs e)
+    {
+        string text = ((Entry)sender).Text;
+    }
+
+
+
+
+
+
+
+
 
 }
 
