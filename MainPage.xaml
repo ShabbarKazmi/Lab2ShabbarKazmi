@@ -11,20 +11,24 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="4*" />
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="*" />
+                
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            
             <Label
                 Text="Clue Compedium"
                 FontSize="50"
                 Padding="30"
                 HorizontalOptions="Center"
                 Grid.Row="0"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 />
 
          
@@ -63,7 +67,6 @@
                 x:Name="AddButton"
                 Text="Add"
                  Clicked="onAdd"/>
-
             </StackLayout>
 
 
@@ -95,12 +98,11 @@
                 x:Name="Difficulty"
                     Keyboard="Numeric"
                 Placeholder="Enter Difficulty Here"
-                TextChanged="DifficultyChanged"
                 Completed="DifficultyCompleted"
                     HorizontalOptions="End"
                 />
 
-            </StackLayout>             
+            </StackLayout>   
             
             <!--End of left stack for buttons-->
 
@@ -112,10 +114,6 @@
                 Grid.Column="2"
                 >
 
-                <BoxView Color="Green"
-                             Grid.RowSpan="1"
-                             Grid.ColumnSpan="2"/>
-
                 <Entry
                 x:Name="Clue"
                 Placeholder="Enter Clue here "
@@ -126,7 +124,8 @@
                 <Entry
                 x:Name="Answer"
                 Placeholder="Enter Answer here"
-                TextChanged="AnswerTextChanged"
+                     Keyboard="Plain"
+                    TextChanged="AnswerTextChanged"
                 Completed="AnswerCompleted"
                 />
 
@@ -137,17 +136,15 @@
                     HorizontalOptions="Start"/>
 
                 <DatePicker
-                     Grid.Column="0"
-                    MinimumDate = "01/01/2022"
-            MaximumDate="12/31/2022"
-            Date="06/21/2022" 
+                  x:Name=" CurrentDate"
+                MinimumDate="{Binding MinDate}"
+                    MaximumDate="{Binding MaxDate}"
+            DateSelected="OnDateSelected"
             HorizontalOptions="End" />
 
             </StackLayout>
         </Grid>
         
-
-
 
         <!--
         <VerticalStackLayout
@@ -211,6 +208,9 @@
 
         </VerticalStackLayout>
 
+        TextChanged="AnswerTextChanged"
+         TextChanged="DifficultyChanged"
+        TextChanged="ClueTextChanged"
 -->
 
     </ScrollView>

@@ -2,9 +2,13 @@
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+
+    public static Database crossword = new Database();
+
+    public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
+
+    var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
