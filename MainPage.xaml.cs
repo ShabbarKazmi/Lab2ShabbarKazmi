@@ -79,7 +79,7 @@ public partial class MainPage : ContentPage
 
         string userEditId = await DisplayPromptAsync("Edit Entry", "Enter Id of entry:", keyboard: Keyboard.Numeric);
 
-        Entry editEntry = crossword.GetEntry(Int32.Parse(userEditId));
+        Entry editEntry = GetEntry(Int32.Parse(userEditId));
 
         if (editEntry is not null)
         {
@@ -127,7 +127,17 @@ public partial class MainPage : ContentPage
         }
     }
 
-
+    private Entry GetEntry(int id)
+    {
+        foreach (Entry entry in MauiProgram.crossword.AllEntries)
+        {
+            if (entry.Id == id)
+            {
+                return entry;
+            }
+        }
+        return null;
+    }
 }
 
 
