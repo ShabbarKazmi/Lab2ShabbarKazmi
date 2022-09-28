@@ -26,7 +26,7 @@ namespace Lab2ShabbarKazmi
 
         public Database()
         {
-            GetEntries();
+        //    GetEntries();
             jsonOptions = new JsonSerializerOptions { WriteIndented = true };
         }
 

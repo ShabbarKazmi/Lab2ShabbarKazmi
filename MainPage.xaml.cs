@@ -8,7 +8,7 @@ public partial class MainPage : ContentPage
     public String userDate = null;
     public int userDifficulty = -1;
     public int id = MauiProgram.crossword.AllEntries.Last().Id;
-
+ 
     public MainPage()
     {
         InitializeComponent();
