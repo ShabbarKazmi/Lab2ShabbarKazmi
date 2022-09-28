@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.ObjectModel;
 
 
+
 namespace Lab2ShabbarKazmi
 {
     public class Database
@@ -23,9 +24,14 @@ namespace Lab2ShabbarKazmi
             set { entries = value; }
         }
 
+        Entry[] initialFavorites = { new Entry("Spiderman,ironman,hulk","marvel",3,"22/22/22",1),
+                                     new Entry("Batman,superman,flash","DC",3,"22/22/22",2), };
+
         public Database()
         {
-            GetEntries();
+            //GetEntries();
+            entries.Add(initialFavorites[0]);
+            entries.Add(initialFavorites[1]);
             options = new JsonSerializerOptions { WriteIndented = true };
         }
 
@@ -54,7 +60,9 @@ namespace Lab2ShabbarKazmi
             }
             return entries;
         }
-/*
+    }
+
+    /*
         public bool ReplaceEntry(Entry replacementEntry)
         {
             foreach (Entry entry in entries) // iterate through entries until we find the Entry in question
@@ -82,4 +90,7 @@ namespace Lab2ShabbarKazmi
             return false;
         }
     }
+    */
 }
+
+

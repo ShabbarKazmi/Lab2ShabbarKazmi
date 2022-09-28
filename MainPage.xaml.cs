@@ -4,24 +4,24 @@ namespace Lab2ShabbarKazmi;
 public partial class MainPage : ContentPage
 {
     public String userClue = null;
-    public String userAnswer= null;
+    public String userAnswer = null;
     public String userDate = null;
-    public int userDifficulty =-1;
-    public int id = 0; // need to find a way to get the largest id in the list
+    public int userDifficulty = -1;
+    public int id = MauiProgram.crossword.AllEntries.Last().Id;
 
-	public MainPage()
-	{
-		InitializeComponent();
-        //EntriesLV.ItemsSource = MauiProgram.crossword.AllEntries;
+    public MainPage()
+    {
+        InitializeComponent();
+        EntriesLV.ItemsSource = MauiProgram.crossword.AllEntries;
     }
 
     // Clue Field 
-    private void ClueCompleted (object sender, EventArgs e)
-	{
-      userClue = Clue.Text;
+    private void ClueCompleted(object sender, EventArgs e)
+    {
+        userClue = Clue.Text;
     }
-	 private void ClueTextChanged(object sender, TextChangedEventArgs e)
-	{
+    private void ClueTextChanged(object sender, TextChangedEventArgs e)
+    {
         userClue = Clue.Text;
     }
 
@@ -35,7 +35,7 @@ public partial class MainPage : ContentPage
     private void AnswerCompleted(object sender, EventArgs e)
 
     {
-      userAnswer = Answer.Text;       
+        userAnswer = Answer.Text;
     }
 
     //Difficulty Field 
@@ -66,7 +66,7 @@ public partial class MainPage : ContentPage
             MauiProgram.crossword.AllEntries.Add(new Entry(userClue,
             userAnswer, userDifficulty, userDate, ++id));
 
-            DisplayAlert("Entry Sucessful", "Entry was successfully added", "Ok");   
+            DisplayAlert("Entry Sucessful", "Entry was successfully added", "Ok");
         }
         else
             DisplayAlert("Invalid Entry", "Please make sure no field is left empty", "Ok");
@@ -95,20 +95,20 @@ public partial class MainPage : ContentPage
             MauiProgram.crossword.AllEntries[editId].Answer = editAnswer;
             MauiProgram.crossword.AllEntries[editId].CurrentDate = editdate;
             MauiProgram.crossword.AllEntries[editId].Difficulty = Int32.Parse(editDifficulty);
-            
 
 
-            DisplayAlert("Edit Entry", "Entry was edited successfully", "Ok");
+
+           await DisplayAlert("Edit Entry", "Entry was edited successfully", "Ok");
         }
         else
         {
-            DisplayAlert("Edit Entry", "Entry was not found, Please enter valid Id", "Ok");
+           await DisplayAlert("Edit Entry", "Entry was not found, Please enter valid Id", "Ok");
         }
 
     }
     private async void onDelete(Object send, EventArgs e)
     {
-        
+
 
         string deletionId = await DisplayPromptAsync("Delete Entry", "Enter Id of entry:", keyboard: Keyboard.Numeric);
 
