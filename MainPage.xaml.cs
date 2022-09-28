@@ -96,8 +96,6 @@ public partial class MainPage : ContentPage
             MauiProgram.crossword.AllEntries[editId].CurrentDate = editdate;
             MauiProgram.crossword.AllEntries[editId].Difficulty = Int32.Parse(editDifficulty);
 
-
-
            await DisplayAlert("Edit Entry", "Entry was edited successfully", "Ok");
         }
         else
@@ -108,7 +106,6 @@ public partial class MainPage : ContentPage
     }
     private async void onDelete(Object send, EventArgs e)
     {
-
 
         string deletionId = await DisplayPromptAsync("Delete Entry", "Enter Id of entry:", keyboard: Keyboard.Numeric);
 

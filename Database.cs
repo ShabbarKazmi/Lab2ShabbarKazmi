@@ -11,9 +11,9 @@ namespace Lab2ShabbarKazmi
     public class Database
     {
 
-        const String filename = "clues.db";
+        public const String filename = "crossword.db";
 
-        JsonSerializerOptions options;
+       public JsonSerializerOptions jsonOptions;
 
 
         private ObservableCollection<Entry> entries = new ObservableCollection<Entry>();
@@ -24,25 +24,24 @@ namespace Lab2ShabbarKazmi
             set { entries = value; }
         }
 
-        Entry[] initialFavorites = { new Entry("Spiderman,ironman,hulk","marvel",3,"22/22/22",1),
-                                     new Entry("Batman,superman,flash","DC",3,"22/22/22",2), };
-
         public Database()
         {
-            //GetEntries();
-            entries.Add(initialFavorites[0]);
-            entries.Add(initialFavorites[1]);
-            options = new JsonSerializerOptions { WriteIndented = true };
+            GetEntries();
+            jsonOptions = new JsonSerializerOptions { WriteIndented = true };
         }
 
-        public async void WriteTextToFile(string text, string targetFileName)
+        public void AddEntry(Entry entry)
         {
-            // Write the file content to the app data directory
-            string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, targetFileName);
-            using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
-            using StreamWriter streamWriter = new StreamWriter(outputStream);
-            await streamWriter.WriteAsync(text);
-        }
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(MauiProgram.crossword.jsonOptions);
+                File.WriteAllText(filename, jsonString);
+            }
+            catch (IOException ioe)
+            {
+                Console.WriteLine("Error while adding entry: {0}", ioe);
+            }
+       }
 
         public ObservableCollection<Entry> GetEntries()
         {
@@ -60,37 +59,15 @@ namespace Lab2ShabbarKazmi
             }
             return entries;
         }
+
+
+
+
+
+
+
+
     }
-
-    /*
-        public bool ReplaceEntry(Entry replacementEntry)
-        {
-            foreach (Entry entry in entries) // iterate through entries until we find the Entry in question
-            {
-                if (entry.Id == replacementEntry.Id) // found it
-                {
-                    entry.Answer = replacementEntry.Answer;
-                    entry.Clue = replacementEntry.Clue;
-                    entry.Difficulty = replacementEntry.Difficulty;
-                    entry.Date = replacementEntry.Date;         // change it then write it out
-
-                    try
-                    {
-                        string jsonString = JsonSerializer.Serialize(entries, options);
-                        File.WriteAllText(filename, jsonString);
-                        return true;
-                    }
-                    catch (IOException ioe)
-                    {
-                        Console.WriteLine("Error while replacing entry: {0}", ioe);
-                    }
-
-                }
-            }
-            return false;
-        }
-    }
-    */
 }
 
 
